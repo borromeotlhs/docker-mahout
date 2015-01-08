@@ -37,5 +37,7 @@ RUN mvn -DskipTests clean install
 # ENV needs to be used, as the above doesn't seem to be visible from cli
 ENV JAVA_HOME /usr
 
+# Needed to specify that we are running without hadoop
+ENV MAHOUT_LOCAL true
 # drop this container into the path necessary to utilize the now trained ML models created by Mahout
 WORKDIR /src/mahout/bin
