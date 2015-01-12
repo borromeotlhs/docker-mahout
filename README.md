@@ -65,6 +65,5 @@ $ mahout testnb
 </code>
 
 # TODO
-Have to add mahout to the PATH, so that you don't need to call it with:
 
-<code>./mahout</code>
+You tell me ;)
