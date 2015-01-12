@@ -6,7 +6,7 @@ Build mahout from source in a docker container
 After logging into docker:
 
 <code>
-docker run -it -v <path_to_corpus>:/data/corpus:ro borromeotlhs/mahout:v0.9 /bin/bash
+docker run -it -v <path_to_corpus>:/data/corpus:ro borromeotlhs/docker-mahout /bin/bash
 </code>
 
 
@@ -14,18 +14,22 @@ docker run -it -v <path_to_corpus>:/data/corpus:ro borromeotlhs/mahout:v0.9 /bin
 assuming you've done the above, you can train a Complementary NaiveBayes classifier on your corpus with:
 
 <code>
-$ mahout seqdirectory 
+$ ./mahout seqdirectory 
         -i /data/corpus
-        -o /data/corpus-seq 
+        -o /data/corpus-seq
+        -xm sequential
         -ow
 </code>
 
-<code>$ mahout seq2sparse 
+<code>$ ./mahout seq2sparse 
         -i /data/corpus-seq
         -o /data/corpus-vectors
         -lnorm 
         -nv 
         -wt tfidf
+        -ng 3
+        -n 2
+        --maxDFPercent 85
 </code>
 
 <code>$ mahout split 
