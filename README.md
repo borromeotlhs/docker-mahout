@@ -14,14 +14,14 @@ docker run -it -v `<path_to_corpus>`:/data/corpus:ro borromeotlhs/docker-mahout 
 assuming you've done the above, and that your corpus is segmented under self-labeled directories, you can train a Complementary NaiveBayes classifier on your corpus with:
 
 <code>
-$ ./mahout seqdirectory 
+$ /usr/local/mahout/bin/mahout seqdirectory 
         -i /data/corpus
         -o /data/corpus-seq
         -xm sequential
         -ow
 </code>
 
-<code>$ ./mahout seq2sparse 
+<code>$ /usr/local/mahout/bin/mahout seq2sparse 
         -i /data/corpus-seq
         -o /data/corpus-vectors
         -lnorm 
@@ -32,7 +32,7 @@ $ ./mahout seqdirectory
         --maxDFPercent 85
 </code>
 
-<code>$ mahout split 
+<code>$ /usr/local/mahout/bin/mahout split 
         -i /data/corpus-vectors/tfidf-vectors 
         --trainingOutput /data/corpus-train-vectors 
         --testOutput /data/corpus-test-vectors  
@@ -40,7 +40,7 @@ $ ./mahout seqdirectory
         --overwrite --sequenceFiles -xm sequential
 </code>
 
-<code>$ mahout trainnb 
+<code>$ /usr/local/mahout/bin/mahout trainnb 
         -i /data/corpus-train-vectors
         -el  
         -o /data/model 
@@ -55,7 +55,7 @@ You could, alternatively, utilize the '-l' option to provide your own csv file o
 and will allow us to test with:
 
 <code>
-$ mahout testnb 
+$ /usr/local/mahout/bin/mahout testnb 
         -i /data/corpus-test-vectors
         -m /data/model 
         -l /data/labelindex 
