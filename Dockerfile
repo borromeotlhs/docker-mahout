@@ -1,6 +1,6 @@
 # This Dockerfile will build mahout
 # To build this image using this Dockerfile, use:
-# sudo docker build --tag="mahout:0.9" .
+# sudo docker build --tag="mahout:0.12.2" .
 
 FROM google/debian:wheezy
 
@@ -18,8 +18,8 @@ RUN apt-get update -q
 #EXPOSE 9000
 
 # from http://mahout.apache.org/developers/buildingmahout.html
-# technically, mahout needs Java JDK 1.6, but this _should_ work
-RUN apt-get install openjdk-6-jdk -yq
+# technically, mahout needs Java JDK 1.7, but this _should_ work
+RUN apt-get install openjdk-7-jdk -yq
 RUN echo "JAVA_HOME=/usr/bin" >> /etc/environment
 # needs maven3, ironically retrieved through 'maven' package though 'maven2' exists. . .
 #RUN apt-get install -y maven
@@ -51,13 +51,13 @@ USER root
 
 WORKDIR /tmp
 
-RUN wget http://archive.apache.org/dist/mahout/0.9/mahout-distribution-0.9.tar.gz && \
-    tar -xvzf mahout-distribution-0.9.tar.gz && \
-    mv mahout-distribution-0.9 /usr/local/mahout
+RUN wget http://archive.apache.org/dist/mahout/0.12.2/apache-mahout-distribution-0.12.2.tar.gz && \
+    tar -xvzf apache-mahout-distribution-0.12.2.tar.gz && \
+    mv apache-mahout-distribution-0.12.2 /usr/local/mahout
 
-RUN wget http://archive.apache.org/dist/hadoop/core/hadoop-2.2.0/hadoop-2.2.0.tar.gz && \
-    tar -xvzf hadoop-2.2.0.tar.gz && \
-    mv hadoop-2.2.0 /usr/local/hadoop
+RUN wget http://archive.apache.org/dist/hadoop/core/hadoop-2.7.3/hadoop-2.7.3.tar.gz && \
+    tar -xvzf hadoop-2.7.3.tar.gz && \
+    mv hadoop-2.7.3 /usr/local/hadoop
 
 WORKDIR /usr/local
 RUN chown -R hduser:hadoop hadoop
